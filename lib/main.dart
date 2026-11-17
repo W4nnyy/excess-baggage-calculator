@@ -322,7 +322,7 @@ class AboutPage extends StatelessWidget {
               TextButton(
                 onPressed: () async {
                   final url = Uri.parse(
-                    'https://github.com/W4nnyy',
+                    'https://github.com/W4nnyy/excess-baggage-calculator',
                   );
                   await launchUrl(url);
                 },
