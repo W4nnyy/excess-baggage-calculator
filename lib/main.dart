@@ -154,6 +154,16 @@ class _HomePageState extends State<HomePage> {
               'Enter your baggage details to calculate the excess baggage fee.',
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 10),
+
+            const Text(
+              'Notice: Economy allowance is 20 kg and Business allowance is 40 kg. An 8% service tax applies.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
 
             const SizedBox(height: 30),
             const Text('Baggage Weight (kg)'),
@@ -283,7 +293,13 @@ class AboutPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-               const CircleAvatar(
+              Image.asset(
+                  'assets/images/app_icon.png',
+                  width: 55,
+                  height: 55,
+                ),
+              const SizedBox(height: 15),
+              const CircleAvatar(
               radius: 55,
               backgroundImage: AssetImage(
                 'assets/images/my_photo.png',
