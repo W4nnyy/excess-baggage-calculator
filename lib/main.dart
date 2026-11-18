@@ -28,7 +28,6 @@ class _HomePageState extends State<HomePage> {
   final weightController = TextEditingController();
   final rateController = TextEditingController(text: '15');
 
-
   String ticketClass = 'Economy';
 
   double excessWeight = 0;
@@ -59,19 +58,18 @@ class _HomePageState extends State<HomePage> {
       totalAmount = excessCharge * 1.08;
     });
   }
-  
 
-    void reset() {
-      setState(() {
-        weightController.clear();
-        rateController.text = '15';
-        ticketClass = 'Economy';
+  void reset() {
+    setState(() {
+      weightController.clear();
+      rateController.text = '15';
+      ticketClass = 'Economy';
 
-        excessWeight = 0;
-        excessCharge = 0;
-        totalAmount = 0;
-      });
-    }
+      excessWeight = 0;
+      excessCharge = 0;
+      totalAmount = 0;
+    });
+  }
 
   @override
   void dispose() {
@@ -89,63 +87,49 @@ class _HomePageState extends State<HomePage> {
         foregroundColor: Colors.white,
       ),
 
-
-        drawer: Drawer(
-            child: ListView(
-              children: [
-                const DrawerHeader(
-                  child: Text(
-                    'Menu',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                ),
-
-                ListTile(
-                  leading: const Icon(Icons.home),
-                  title: const Text('Home'),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-
-                ListTile(
-                  leading: const Icon(Icons.info),
-                  title: const Text('About'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AboutPage(),
-                      ),
-                    );
-                  },
-                ),
-              ],
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              child: Text('Menu', style: TextStyle(fontSize: 24)),
             ),
-          ),
 
+            ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.info),
+              title: const Text('About'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AboutPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Icon(
-              Icons.flight_takeoff,
-              size: 60,
-              color: Colors.blue,
-            ),
+            const Icon(Icons.flight_takeoff, size: 60, color: Colors.blue),
 
             const SizedBox(height: 10),
 
             const Text(
               'Excess Baggage Calculator',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 10),
@@ -159,10 +143,7 @@ class _HomePageState extends State<HomePage> {
             const Text(
               'Notice: Economy allowance is 20 kg and Business allowance is 40 kg. An 8% service tax applies.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
 
             const SizedBox(height: 30),
@@ -224,50 +205,39 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox(height: 10),
 
-            ElevatedButton(
-              onPressed: reset,
-              child: const Text('Reset'),
-            ),
-
+            ElevatedButton(onPressed: reset, child: const Text('Reset')),
 
             const SizedBox(height: 30),
 
             const Text(
               'Calculation Result',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+
+            const SizedBox(height: 20),
+
+            Text(
+              'Excess Weight: ${excessWeight.toStringAsFixed(2)} kg',
+              style: const TextStyle(fontSize: 16),
+            ),
+
+            const SizedBox(height: 8),
+
+            Text(
+              'Excess Charge: RM ${excessCharge.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 16),
+            ),
+
+            const SizedBox(height: 12),
+
+            Text(
+              'Total Payable: RM ${totalAmount.toStringAsFixed(2)}',
+              style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.green,
               ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                'Excess Weight: ${excessWeight.toStringAsFixed(2)} kg',
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 8),
-
-              Text(
-                'Excess Charge: RM ${excessCharge.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              Text(
-                'Total Payable: RM ${totalAmount.toStringAsFixed(2)}',
-                style: const TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
-                ),
-              ),
+            ),
           ],
         ),
       ),
@@ -293,29 +263,19 @@ class AboutPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                  'assets/images/app_icon.png',
-                  width: 55,
-                  height: 55,
-                ),
+              Image.asset('assets/images/app_icon.png', width: 55, height: 55),
               const SizedBox(height: 15),
               const CircleAvatar(
-              radius: 55,
-              backgroundImage: AssetImage(
-                'assets/images/my_photo.png',
+                radius: 55,
+                backgroundImage: AssetImage('assets/images/my_photo.png'),
               ),
-            ),
-
 
               const SizedBox(height: 20),
 
               const Text(
                 'Excess Baggage Calculator',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 30),
@@ -351,5 +311,3 @@ class AboutPage extends StatelessWidget {
     );
   }
 }
-
-
