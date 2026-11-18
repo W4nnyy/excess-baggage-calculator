@@ -34,13 +34,32 @@ class _HomePageState extends State<HomePage> {
   double excessCharge = 0;
   double totalAmount = 0;
 
+  
   void calculate() {
     double? weight = double.tryParse(weightController.text);
     double? rate = double.tryParse(rateController.text);
 
-    if (weight == null || rate == null || weight < 0 || rate < 0) {
+    if (weight == null ||
+        rate == null ||
+        !weight.isFinite ||
+        !rate.isFinite ||
+        weight < 0 ||
+        weight > 100 ||
+        rate < 0 ||
+        rate > 100) {
+
+      setState(() {
+        excessWeight = 0;
+        excessCharge = 0;
+        totalAmount = 0;
+      });
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter valid numbers')),
+        const SnackBar(
+          content: Text(
+            'Invalid input! Weight must be 0-100 kg and rate 0-100 RM.',
+          ),
+        ),
       );
       return;
     }
@@ -58,6 +77,7 @@ class _HomePageState extends State<HomePage> {
       totalAmount = excessCharge * 1.08;
     });
   }
+
 
   void reset() {
     setState(() {
@@ -196,7 +216,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
+                foregroundColor: Colors.white, 
                 padding: const EdgeInsets.all(15),
               ),
               onPressed: calculate,
